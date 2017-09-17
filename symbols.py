@@ -1,7 +1,8 @@
-
-print u'\u2603'
-print u'\u2600'
-print u'\u2602'
-print u'\u262F'
-print u'\u2660'
-
+print u"\U0001F436"
+print u"\U0001F525"
+print u"\u262D"
+print u"\U0001F335"
+print u"\U0001F4BB"
+print u"\U0001F4BE"
+print u"\U0001F4A9"
+print u"\U0001F428"
