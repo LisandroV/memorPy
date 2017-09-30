@@ -7,6 +7,8 @@ class Player:
         self.password = passw
         self.games = 0
         self.wins = 0
+        if len(self.name) < 3:
+            raise ValueError('Nombre de jugador demasiado corto')
         #validacion para unicidad de jugadores
         if not Player.valid_unique_name(self.name):
             raise ValueError('Ya existe ese nombre de jugador')
@@ -45,3 +47,17 @@ class Player:
     @staticmethod
     def valid_passw_len(passw):
         return len(passw) > 4
+
+    #metodo que encuentra al usiario con ese nombre y esa contaseña
+    #sirve para hacer log in
+    @staticmethod
+    def findPlayer(name, passwd):
+        players_db = shelve.open("./Players_DB.dat")
+        try:
+            foundPlayer = players_db[name]
+            players_db.close()
+            if foundPlayer.password == passwd:
+                return foundPlayer
+        except:
+            pass
+        return None
