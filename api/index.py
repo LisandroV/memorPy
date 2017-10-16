@@ -17,3 +17,9 @@ print "  c) Borrar historial"
 opt = valid_option(3)
 if opt == 'a':
     play(player)
+elif opt == 'b':
+    print "Tus estadisticas!: \n"
+    print player
+else:
+    player.clear_history()
+    print "Listo! Como nuevo :)"

@@ -25,12 +25,18 @@ class Player:
     def clear_history(self):
         self.games = 0
         self.wins = 0
+        players_db = shelve.open("./Players_DB.dat")
+        players_db[self.name] = self
+        players_db.close()
 
     #sube el numero de juegos y partidas ganadas
     def has_won(self, won):
         if won:
             self.wins = self.wins + 1
         self.games = self.games + 1
+        players_db = shelve.open("./Players_DB.dat")
+        players_db[self.name] = self
+        players_db.close()
 
 
     def reset_lives(self):
