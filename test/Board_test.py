@@ -50,7 +50,7 @@ class BoardTest(unittest.TestCase):
         self.assertFalse( board.show(diff_a, diff_b) )
 
     def test_should_raise_same_card(self):
-        #si se escoje la misma carta debe lanzar un error
+        #si se escoge la misma carta debe lanzar un error
         positions = list('abcdefghijklmnop')
         card_selected = choice(positions)
         board = Board(symbols)

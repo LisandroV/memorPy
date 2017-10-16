@@ -1,3 +1,4 @@
 *.pyc
 test/__pycache__
 .cache
+Players_DB.dat
