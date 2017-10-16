@@ -18,19 +18,17 @@ def signUp():
 
     while True:
         #obtener contraseña
-        print "Contraseña: "
         while True:
-            opt = raw_input()
+            opt = raw_input("Contraseña: ")
             if Player.valid_passw_len(opt):
                 break
             print "La contraseña debe contener 5 caracteres o más, intenta con otra"
         passwd = opt
 
         #confirmacion de contraseña
-        print "Confirma tu contraseña:"
-        opt = raw_input()
+        opt = raw_input("Confirma tu contraseña: ")
         if opt == passwd:
             break
-        print "Las contraseñas no coinciden, escoje otra contraseña"
+        print "Las contraseñas no coinciden, escoge otra contraseña"
 
     return Player(name,passwd)

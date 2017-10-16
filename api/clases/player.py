@@ -7,6 +7,7 @@ class Player:
         self.password = passw
         self.games = 0
         self.wins = 0
+        self.lives = 3
         if len(self.name) < 3:
             raise ValueError('Nombre de jugador demasiado corto')
         #validacion para unicidad de jugadores
@@ -25,6 +26,18 @@ class Player:
         self.games = 0
         self.wins = 0
 
+    #sube el numero de juegos y partidas ganadas
+    def has_won(self, won):
+        if won:
+            self.wins = self.wins + 1
+        self.games = self.games + 1
+
+
+    def reset_lives(self):
+        self.lives = 3
+
+    def alive(self):
+        return self.lives > 0
     #representacion en casdena del jugador
     def __str__(self):
         rep = "\n  +-----------"
@@ -34,6 +47,18 @@ class Player:
         rep += "\n  |      total jugados  ->  " + str(self.games)
         rep += "\n  +-----------"
         return rep
+
+    def print_lives(self):
+        hearts = ""
+        for i in range(self.lives):
+            hearts += u"\u2665" + "  "
+        for i in range(3 - self.lives):
+            hearts += u"\u2661" + "  "
+        print self.name + "  " + hearts
+
+    #metodo que resta una vida al jugador
+    def lost(self):
+        self.lives = self.lives - 1
 
     #metodo estático para validar uncicidad de los jugadores
     @staticmethod
@@ -56,6 +81,7 @@ class Player:
         try:
             foundPlayer = players_db[name]
             players_db.close()
+            #si el jugador existe y tiene la misma contraseña
             if foundPlayer.password == passwd:
                 return foundPlayer
         except:

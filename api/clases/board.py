@@ -24,7 +24,7 @@ def takeRandomSymbols(sym_list):
     matrix = []
     symbols = sym_list*2 #se duplica la lista para que se repita dos veces cada simbolo
     for i in range(16):
-        sym = choice(symbols)#se escoje al azar un simbolo de la lista y se mete en la matriz
+        sym = choice(symbols)#se escoge al azar un simbolo de la lista y se mete en la matriz
         matrix.append(sym)
         symbols.remove(sym)
     return matrix
@@ -41,12 +41,16 @@ class Board:
     def __str__(self):
         return stringifyBoardList(self.knownCards)
 
+    #metodo para saber si ya se tienen todas las respuestas
+    def has_won(self):
+        return self.flippedCards == self.knownCards
+
     #muestra las cartas seleccionadas y regresa true si son pareja
     def show(self, card1, card2):
         if card1 not in positions or card2 not in positions:
-            raise ValueError('Select only the cards on the board')
+            raise ValueError('\nSelecciona solo cartas del tablero')
         if card1 == card2:#no se puede seleccionar la misma carta dos veces
-            raise ValueError('Can\'t select the same card')
+            raise ValueError('\nNo puedes seleccionar la misma carta')
         index1, index2 = positions.index(card1), positions.index(card2)
         to_show = self.knownCards[:]
         to_show[index1] = self.flippedCards[index1]#se voltan las cartas para poder verlas
@@ -56,3 +60,7 @@ class Board:
             self.knownCards = to_show#se actuliza la lista de las cartas que ya tienen par
             return True
         return False#si no son los mismos simbolos
+
+    #enseña el tablero con las respuestas
+    def show_flippedBoard(self):
+        print stringifyBoardList(self.flippedCards)
